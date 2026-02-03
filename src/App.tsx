@@ -18,7 +18,10 @@ import {
   Award,
   Target,
   Zap,
-  TrendingUp
+  TrendingUp,
+  Download,
+  FolderOpen,
+  Github
 } from 'lucide-react';
 
 const Portfolio = () => {
@@ -30,7 +33,7 @@ const Portfolio = () => {
     setIsLoaded(true);
     
     const handleScroll = () => {
-      const sections = ['home', 'about', 'experience', 'education', 'skills', 'contact'];
+      const sections = ['home', 'about', 'experience', 'projects', 'education', 'skills', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -155,7 +158,7 @@ const Portfolio = () => {
           <div className="flex justify-between items-center h-16">
             <div className="flex-shrink-0">
               <h3 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">
-                Noor Aldeen Al-Harahsheh
+                Noor Aldeen Al-Harahesha
               </h3>
             </div>
             
@@ -164,6 +167,7 @@ const Portfolio = () => {
               <NavLink href="home">Home</NavLink>
               <NavLink href="about">About</NavLink>
               <NavLink href="experience">Experience</NavLink>
+              <NavLink href="projects">Projects</NavLink>
               <NavLink href="education">Education</NavLink>
               <NavLink href="skills">Skills</NavLink>
               <NavLink href="contact">Contact</NavLink>
@@ -187,6 +191,7 @@ const Portfolio = () => {
                 <NavLink href="home">Home</NavLink>
                 <NavLink href="about">About</NavLink>
                 <NavLink href="experience">Experience</NavLink>
+                <NavLink href="projects">Projects</NavLink>
                 <NavLink href="education">Education</NavLink>
                 <NavLink href="skills">Skills</NavLink>
                 <NavLink href="contact">Contact</NavLink>
@@ -224,15 +229,16 @@ const Portfolio = () => {
               <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
                 Hi, I'm{' '}
                 <span className="bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent">
-                  Noor Aldeen Al-Harahsheh
+                  Noor Aldeen Al-Harahesha
                 </span>
               </h1>
               <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-blue-100">
-                Data Scientist & AI Engineer
+                Multidisciplinary Data Scientist · Computer Vision & NLP
               </h2>
               <p className="text-lg md:text-xl text-blue-100 mb-8 leading-relaxed">
-                Results-driven Data Scientist with expertise in machine learning, natural language processing, 
-                and scalable data systems. Passionate about leveraging AI to solve complex problems and drive innovation.
+                Building end-to-end AI solutions for image understanding, OCR, document intelligence, and semantic search. 
+                Production-ready pipelines with Python, YOLO, Transformers & Elasticsearch—delivering scalable systems 
+                for damage detection, contract analysis, and compliance with measurable business impact.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
@@ -250,6 +256,16 @@ const Portfolio = () => {
                   <ExternalLink className="w-5 h-5 mr-2" />
                   View LinkedIn
                 </a>
+                <a
+                  href={`${import.meta.env.BASE_URL}nooraldeensamer-2.pdf`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download="nooraldeensamer-cv.pdf"
+                  className="border-2 border-white/30 hover:bg-white/10 text-white font-semibold py-3 px-8 rounded-lg transform transition-all duration-300 hover:-translate-y-1 flex items-center justify-center"
+                >
+                  <Download className="w-5 h-5 mr-2" />
+                  Download CV
+                </a>
               </div>
             </div>
             
@@ -261,7 +277,7 @@ const Portfolio = () => {
                   <div className="w-full h-full rounded-full overflow-hidden border-4 border-white/30 shadow-2xl">
                     <img 
                       src="/profile.jpg" 
-                      alt="Noor Aldeen Al-Harahsheh"
+                      alt="Noor Aldeen Al-Harahesha"
                       className="w-full h-full object-cover"
                       onError={(e) => {
                         // Fallback to icon if image doesn't load
@@ -302,16 +318,16 @@ const Portfolio = () => {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                I'm a passionate Data Scientist based in Amman, Jordan, with a strong foundation in machine learning, 
-                natural language processing, and scalable data systems. As part of Jordan's first cohort to earn a 
-                bachelor's degree in Data Science, I ranked third in my class, demonstrating my dedication to academic 
-                excellence and passion for advancing the field.
+                I'm a multidisciplinary Data Scientist based in Amman, Jordan, with strong experience in Computer Vision 
+                and NLP. I build end-to-end AI solutions for image understanding, OCR, document intelligence, and semantic 
+                search—from data ingestion and preprocessing through model inference, evaluation, and reporting. As part of 
+                Jordan's first cohort to earn a bachelor's degree in Data Science, I ranked third in my class.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed">
-                My experience spans across diverse industries, from legal tech to telecommunications, where I've 
-                successfully deployed AI solutions that impact hundreds of thousands of users. I specialize in 
-                building production-ready ML pipelines, developing multilingual NLP models, and creating intelligent 
-                systems that deliver measurable business value.
+                I've delivered scalable systems for real-world use cases: contract analysis and risk scoring, license plate 
+                recognition, damage detection, and legal chatbots across Gulf countries. I focus on production-ready 
+                pipelines with Python, YOLO, Transformers, and Elasticsearch—emphasizing performance, reliability, and 
+                measurable business impact.
               </p>
             </div>
             
@@ -319,7 +335,7 @@ const Portfolio = () => {
               <StatCard value="280K+" label="Legal cases impacted" icon={Target} delay={100} />
               <StatCard value="5K+" label="Monthly chatbot users" icon={User} delay={200} />
               <StatCard value="85%+" label="User satisfaction rate" icon={TrendingUp} delay={300} />
-              <StatCard value="60%" label="Data processing improvement" icon={BarChart3} delay={400} />
+              <StatCard value="4" label="Gulf countries served" icon={Globe} delay={400} />
             </div>
           </div>
         </div>
@@ -337,53 +353,164 @@ const Portfolio = () => {
             <ExperienceCard
               role="Data Scientist"
               company="Qistas for Information Technology"
-              location="Amman, Jordan"
-              period="Sep 2023 - Present"
+              location="Amman, 7th Circle"
+              period="Nov 2025 - Present"
               achievements={[
-                "Led AI/ML projects in legal tech sector across Gulf countries, impacting 280,000+ legal cases",
-                "Developed \"Araf\" multilingual AI legal chatbot serving 5,000+ users monthly with 85%+ satisfaction",
-                "Built NLP models for legislative analysis, reducing legal research time by 30%",
-                "Created interactive dashboards improving decision-making efficiency by 45%",
-                "Implemented Elasticsearch semantic search across 800,000+ legal documents",
-                "Designed dynamic function routing with GPT-4, reducing query response time by 35%"
+                "Delivered Phase-1 Contract Reviewer Agent: PDF/DOCX ingestion, extraction, clause detection, risk scoring via playbooks, dashboards & HTML reporting",
+                "Designed agentic legal workflow framework with routing logic, prompt standards, verification/anti-hallucination patterns, and IRAC-based structuring",
+                "Implemented term/vocabulary consistency layer to detect and resolve legal terminology conflicts across documents",
+                "Produced internal documentation and demo materials (workflows, diagrams, decks, scripts) to align product, leadership, and UX teams"
               ]}
               delay={100}
             />
             
             <ExperienceCard
-              role="Data Scientist Intern"
-              company="Orange Company"
-              location="Amman, Jordan"
-              period="May - Jul 2023"
+              role="AI Machine Learning Specialist"
+              company="Future Technology Systems Co. (FutureTEC)"
+              location="Amman, Macca St."
+              period="Jun 2025 - Aug 2025"
               achievements={[
-                "Conducted comprehensive data collection, cleansing, and preprocessing",
-                "Engineered and fine-tuned machine learning models with focus on performance and scalability",
-                "Collaborated with cross-functional teams to align technical solutions with business objectives",
-                "Led full-cycle data science projects from problem definition to model deployment"
+                "Built Sales Analytics Chatbot with dynamic SQL, predictive insights, and interactive dashboards using FastAPI, Streamlit, and PostgreSQL",
+                "Developed multi-agent LLM system with real-time charts, chat history, and intelligent fallback for sales forecasting and analysis",
+                "Created secure GRC AI Assistant (AutoAuditAI) to extract cybersecurity findings from audit reports using LLM-based document parsing",
+                "Designed pipelines for sentiment analysis, document tagging, and PDF highlight extraction using OCR, rules, and LLMs",
+                "Deployed production-ready AI tools with systemd, Git, and PostgreSQL across internal client environments"
               ]}
               delay={200}
             />
             
             <ExperienceCard
-              role="Data Scientist Intern"
-              company="SHAI For AI Company"
-              location="Amman, Jordan"
-              period="Sep 2022 - Feb 2023"
+              role="Data Scientist"
+              company="Qistas for Information Technology"
+              location="Amman, 7th Circle"
+              period="Sep 2023 - Jun 2025"
               achievements={[
-                "Developed computer vision, ML, and NLP models achieving up to 84% accuracy",
-                "Processed large-scale datasets exceeding 100,000 records with 99% data integrity",
-                "Engineered Python library for real-time face recognition with 87% accuracy",
-                "Designed custom search engine improving Arabic semantic search by 35%",
-                "Built real-time object detection system for live-streamed games using YOLOv5"
+                "Led and contributed to AI/ML projects in legal tech across Gulf countries (Jordan, Bahrain, Saudi Arabia, UAE), impacting 280,000+ legal cases",
+                "Developed and deployed \"Araf,\" multilingual AI legal chatbot serving 5,000+ users monthly across four Gulf countries with 85%+ satisfaction",
+                "Built NLP models to summarize and compare legislative changes, reducing legal research time by 30%"
               ]}
               delay={300}
+            />
+            
+            <ExperienceCard
+              role="Data Scientist Intern"
+              company="Orange Company"
+              location="Amman, Dakhlia Circle"
+              period="May 2023 - Jul 2023"
+              achievements={[
+                "Conducted comprehensive data collection, cleansing, and preprocessing for analysis-ready datasets across diverse sources",
+                "Engineered, trained, and fine-tuned ML models with emphasis on performance, scalability, and iterative enhancement",
+                "Collaborated with cross-functional teams to align technical solutions with business objectives",
+                "Led full-cycle data science projects from problem definition to model deployment in fast-paced environments"
+              ]}
+              delay={400}
+            />
+            
+            <ExperienceCard
+              role="Data Scientist Intern"
+              company="SHAI For AI Company"
+              location="Amman, Queen Rania St."
+              period="Sep 2022 - Feb 2023"
+              achievements={[
+                "Developed and deployed computer vision, ML, and NLP models achieving up to 84% accuracy across AI-driven applications",
+                "Engineered Python library for real-time employee face recognition and attendance analytics: 87% accuracy, 40% reduction in manual tracking time",
+                "Led end-to-end real-time object detection for live-streamed Arabian Tarneeb card games using YOLOv5, PyTorch, OpenCV—under 100ms latency, 70% precision"
+              ]}
+              delay={500}
             />
           </div>
         </div>
       </section>
 
+      {/* Projects Section */}
+      <section id="projects" className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Projects</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-teal-500 mx-auto rounded-full"></div>
+            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">End-to-end AI and engineering solutions—from computer vision and NLP to DevOps and security.</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className={`bg-gradient-to-br from-emerald-50 to-teal-50 p-6 rounded-xl border border-emerald-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 ${
+              isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+            }`} style={{ transitionDelay: '100ms' }}>
+              <div className="flex items-start justify-between mb-3">
+                <div className="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center">
+                  <FolderOpen className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-xs font-medium text-emerald-600 bg-emerald-100 px-2 py-1 rounded-full">Dec 2025 - Present</span>
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">SmartBloom – Plant Disease & Flower Classification</h3>
+              <p className="text-sm text-gray-700 mb-4">End-to-end computer vision pipeline for plant/flower classification and disease/damage detection. YOLO + CNN/EfficientNet-style models, Hydra-style configs, experiment logging.</p>
+              <p className="text-xs text-gray-500">Python · PyTorch · OpenCV · Ultralytics YOLO</p>
+            </div>
+
+            <div className={`bg-gradient-to-br from-violet-50 to-purple-50 p-6 rounded-xl border border-violet-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 ${
+              isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+            }`} style={{ transitionDelay: '200ms' }}>
+              <div className="flex items-start justify-between mb-3">
+                <div className="w-10 h-10 bg-violet-500 rounded-lg flex items-center justify-center">
+                  <FolderOpen className="w-5 h-5 text-white" />
+                </div>
+                <a href="https://github.com/noorsamer1/DevSecOps-Security-Assessment-Tool" target="_blank" rel="noopener noreferrer" className="text-violet-600 hover:text-violet-800 flex items-center text-sm font-medium">
+                  <Github className="w-4 h-4 mr-1" /> Repo
+                </a>
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">DevSecOps Security Assessment Tool</h3>
+              <p className="text-sm text-gray-700 mb-4">Flask dashboard that automates Docker image vulnerability scanning with Trivy. Quick Scan (80% faster), JSON/TXT/PDF reports, Chart.js dashboards, CVE tracking and severity classification.</p>
+              <p className="text-xs text-gray-500">Flask · Trivy · Docker · Chart.js</p>
+            </div>
+
+            <div className={`bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-xl border border-amber-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 ${
+              isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+            }`} style={{ transitionDelay: '300ms' }}>
+              <div className="flex items-start justify-between mb-3">
+                <div className="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center">
+                  <FolderOpen className="w-5 h-5 text-white" />
+                </div>
+                <a href="https://github.com/noorsamer1/Biometric-Attendance-Tracker" target="_blank" rel="noopener noreferrer" className="text-amber-600 hover:text-amber-800 flex items-center text-sm font-medium">
+                  <Github className="w-4 h-4 mr-1" /> Repo
+                </a>
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Biometric Attendance Tracker</h3>
+              <p className="text-sm text-gray-700 mb-4">Biometric access control with Raspberry Pi 4 and R307 fingerprint sensor. Enrollment, authentication, electromagnetic lock, GPIO control, failed-attempt detection.</p>
+              <p className="text-xs text-gray-500">Python · Raspberry Pi 4 · R307 · GPIO</p>
+            </div>
+
+            <div className={`bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 ${
+              isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+            }`} style={{ transitionDelay: '400ms' }}>
+              <div className="flex items-start justify-between mb-3">
+                <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
+                  <FolderOpen className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-xs font-medium text-blue-600 bg-blue-100 px-2 py-1 rounded-full">Feb - May 2025</span>
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">GarageBot – Multi-Modal AI Chatbot</h3>
+              <p className="text-sm text-gray-700 mb-4">Vision + language assistant for garage tasks: YOLO vehicle detection, LLM for NLU and multi-turn chat, image uploads, backend for inference and DB updates (vehicle info, service logs).</p>
+              <p className="text-xs text-gray-500">Python · OpenCV · YOLO · OpenRouter · Flask · SQLite</p>
+            </div>
+
+            <div className={`bg-gradient-to-br from-rose-50 to-pink-50 p-6 rounded-xl border border-rose-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 md:col-span-2 ${
+              isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+            }`} style={{ transitionDelay: '500ms' }}>
+              <div className="flex items-start justify-between mb-3">
+                <div className="w-10 h-10 bg-rose-500 rounded-lg flex items-center justify-center">
+                  <FolderOpen className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-xs font-medium text-rose-600 bg-rose-100 px-2 py-1 rounded-full">Nov 2024 - Feb 2025</span>
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">License Plate Detection & Recognition</h3>
+              <p className="text-sm text-gray-700 mb-4">Computer vision system for automatic plate detection and OCR. YOLO (YOLO11n) + OpenCV for real-time detection; 86% accuracy on video, 93% on images. User interface for images/videos, database storage, law-enforcement use cases. Trained on 5,000+ license plate images.</p>
+              <p className="text-xs text-gray-500">Python · OpenCV · YOLO · Tesseract OCR · Flask</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Education Section */}
-      <section id="education" className="py-20 bg-white">
+      <section id="education" className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Education</h2>
@@ -401,7 +528,7 @@ const Portfolio = () => {
                   </div>
                 </div>
                 <div className="ml-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Bachelor of Science in Data Science</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Bachelor of Science, Data Scientist</h3>
                   <h4 className="text-xl font-semibold text-blue-600 mb-2">Balqa Applied University</h4>
                   <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-4">
                     <span className="flex items-center">
@@ -419,7 +546,7 @@ const Portfolio = () => {
                   </div>
                   <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
                     <p className="text-gray-700 leading-relaxed">
-                      🏆 Graduated as part of Jordan's first cohort to earn a bachelor's degree in Data Science, 
+                      Graduated as part of Jordan's first cohort to earn a bachelor's degree in Data Science, 
                       ranking third in my class. This achievement highlights my dedication to academic excellence 
                       and passion for advancing the field of data science.
                     </p>
@@ -445,12 +572,13 @@ const Portfolio = () => {
             }`} style={{ transitionDelay: '100ms' }}>
               <div className="flex items-center mb-4">
                 <Code className="w-6 h-6 text-blue-600 mr-3" />
-                <h3 className="text-xl font-semibold text-gray-900">Programming Languages</h3>
+                <h3 className="text-xl font-semibold text-gray-900">Languages & Data</h3>
               </div>
               <div className="flex flex-wrap">
                 <SkillBadge skill="Python" delay={150} />
                 <SkillBadge skill="SQL" delay={200} />
                 <SkillBadge skill="NoSQL" delay={250} />
+                <SkillBadge skill="Elasticsearch" delay={300} />
               </div>
             </div>
 
@@ -459,14 +587,16 @@ const Portfolio = () => {
             }`} style={{ transitionDelay: '200ms' }}>
               <div className="flex items-center mb-4">
                 <Brain className="w-6 h-6 text-purple-600 mr-3" />
-                <h3 className="text-xl font-semibold text-gray-900">Machine Learning & AI</h3>
+                <h3 className="text-xl font-semibold text-gray-900">ML, NLP & Vision</h3>
               </div>
               <div className="flex flex-wrap">
-                <SkillBadge skill="Scikit-learn" delay={300} />
-                <SkillBadge skill="PyTorch" delay={350} />
-                <SkillBadge skill="OpenAI" delay={400} />
-                <SkillBadge skill="NLTK" delay={450} />
-                <SkillBadge skill="OpenCV" delay={500} />
+                <SkillBadge skill="Scikit-learn" delay={350} />
+                <SkillBadge skill="PyTorch" delay={400} />
+                <SkillBadge skill="OpenAI" delay={450} />
+                <SkillBadge skill="NLTK" delay={500} />
+                <SkillBadge skill="OpenCV" delay={550} />
+                <SkillBadge skill="Plotly" delay={600} />
+                <SkillBadge skill="Scipy.stats" delay={650} />
               </div>
             </div>
 
@@ -475,15 +605,14 @@ const Portfolio = () => {
             }`} style={{ transitionDelay: '300ms' }}>
               <div className="flex items-center mb-4">
                 <BarChart3 className="w-6 h-6 text-green-600 mr-3" />
-                <h3 className="text-xl font-semibold text-gray-900">Data Analysis & Visualization</h3>
+                <h3 className="text-xl font-semibold text-gray-900">Data & Visualization</h3>
               </div>
               <div className="flex flex-wrap">
-                <SkillBadge skill="Numpy" delay={550} />
-                <SkillBadge skill="Pandas" delay={600} />
-                <SkillBadge skill="Matplotlib" delay={650} />
-                <SkillBadge skill="Seaborn" delay={700} />
-                <SkillBadge skill="Plotly" delay={750} />
-                <SkillBadge skill="Power BI" delay={800} />
+                <SkillBadge skill="Numpy" delay={700} />
+                <SkillBadge skill="Pandas" delay={750} />
+                <SkillBadge skill="Matplotlib" delay={800} />
+                <SkillBadge skill="Seaborn" delay={850} />
+                <SkillBadge skill="Power BI" delay={900} />
               </div>
             </div>
 
@@ -492,13 +621,14 @@ const Portfolio = () => {
             }`} style={{ transitionDelay: '400ms' }}>
               <div className="flex items-center mb-4">
                 <Globe className="w-6 h-6 text-orange-600 mr-3" />
-                <h3 className="text-xl font-semibold text-gray-900">Development & Deployment</h3>
+                <h3 className="text-xl font-semibold text-gray-900">APIs & Development</h3>
               </div>
               <div className="flex flex-wrap">
-                <SkillBadge skill="FastAPI" delay={850} />
-                <SkillBadge skill="Jupyter Notebook" delay={900} />
-                <SkillBadge skill="Elasticsearch" delay={950} />
+                <SkillBadge skill="FastAPI" delay={950} />
                 <SkillBadge skill="Ollama" delay={1000} />
+                <SkillBadge skill="Jupyter Notebook" delay={1050} />
+                <SkillBadge skill="JSON" delay={1100} />
+                <SkillBadge skill="Requests" delay={1150} />
               </div>
             </div>
 
@@ -506,14 +636,14 @@ const Portfolio = () => {
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`} style={{ transitionDelay: '500ms' }}>
               <div className="flex items-center mb-4">
-                <Database className="w-6 h-6 text-red-600 mr-3" />
-                <h3 className="text-xl font-semibold text-gray-900">Databases & Tools</h3>
+                <TrendingUp className="w-6 h-6 text-teal-600 mr-3" />
+                <h3 className="text-xl font-semibold text-gray-900">DevOps & Systems</h3>
               </div>
               <div className="flex flex-wrap">
-                <SkillBadge skill="MySQL" delay={1050} />
-                <SkillBadge skill="SSMS" delay={1100} />
-                <SkillBadge skill="Kibana" delay={1150} />
-                <SkillBadge skill="Postman" delay={1200} />
+                <SkillBadge skill="Linux" delay={1200} />
+                <SkillBadge skill="Docker" delay={1250} />
+                <SkillBadge skill="DevOps" delay={1300} />
+                <SkillBadge skill="Math" delay={1350} />
               </div>
             </div>
 
@@ -521,14 +651,14 @@ const Portfolio = () => {
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`} style={{ transitionDelay: '600ms' }}>
               <div className="flex items-center mb-4">
-                <TrendingUp className="w-6 h-6 text-teal-600 mr-3" />
-                <h3 className="text-xl font-semibold text-gray-900">Scientific Computing</h3>
+                <Database className="w-6 h-6 text-red-600 mr-3" />
+                <h3 className="text-xl font-semibold text-gray-900">Databases & Tools</h3>
               </div>
               <div className="flex flex-wrap">
-                <SkillBadge skill="Scipy.stats" delay={1250} />
-                <SkillBadge skill="Math" delay={1300} />
-                <SkillBadge skill="JSON" delay={1350} />
-                <SkillBadge skill="Requests" delay={1400} />
+                <SkillBadge skill="MySQL" delay={1400} />
+                <SkillBadge skill="SSMS" delay={1450} />
+                <SkillBadge skill="Kibana" delay={1500} />
+                <SkillBadge skill="Postman" delay={1550} />
               </div>
             </div>
           </div>
@@ -631,13 +761,25 @@ const Portfolio = () => {
                 <p className="text-lg text-blue-100 mb-6">
                   Ready to collaborate on your next data science project?
                 </p>
-                <a
-                  href="mailto:nooraldeen529@gmail.com"
-                  className="inline-flex items-center bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold py-3 px-8 rounded-lg transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-                >
-                  <Mail className="w-5 h-5 mr-2" />
-                  Send Message
-                </a>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <a
+                    href="mailto:nooraldeen529@gmail.com"
+                    className="inline-flex items-center bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold py-3 px-8 rounded-lg transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                  >
+                    <Mail className="w-5 h-5 mr-2" />
+                    Send Message
+                  </a>
+                  <a
+                    href={`${import.meta.env.BASE_URL}nooraldeensamer-2.pdf`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download="nooraldeensamer-cv.pdf"
+                    className="inline-flex items-center border-2 border-white/50 hover:bg-white/10 text-white font-semibold py-3 px-8 rounded-lg transform transition-all duration-300 hover:-translate-y-1"
+                  >
+                    <Download className="w-5 h-5 mr-2" />
+                    Download my CV
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -653,11 +795,11 @@ const Portfolio = () => {
                 <User className="w-5 h-5 text-white" />
               </div>
               <h3 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent">
-                Noor Aldeen Al-Harahsheh
+                Noor Aldeen Al-Harahesha
               </h3>
             </div>
             <p className="text-gray-400 mb-4">
-              Data Scientist & AI Engineer | Turning Data into Insights
+              Multidisciplinary Data Scientist · Computer Vision & NLP
             </p>
             <div className="flex justify-center space-x-6 mb-6">
               <a
@@ -679,7 +821,7 @@ const Portfolio = () => {
             </div>
             <div className="border-t border-gray-800 pt-6">
               <p className="text-gray-500 text-sm">
-                &copy; 2025 Noor Aldeen Al-Harahsheh. All rights reserved.
+                &copy; 2026 Noor Aldeen Al-Harahesha. All rights reserved.
               </p>
             </div>
           </div>
